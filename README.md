@@ -115,7 +115,7 @@ pm.test("Response time is less than 1000ms", function () {
 
 ## Results
 
-![Collection Runner results](docs/runner-results.png)
+![Collection Runner results](docs/postman_screenshot.png)
 
 ## Repository layout
 
