@@ -1,0 +1,7 @@
+# Local environment files hold your real Trello key/token - only the template is committed
+environment/*.postman_environment.json
+
+# Newman output
+newman/
+*.log
+.DS_Store
