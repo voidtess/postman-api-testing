@@ -134,29 +134,17 @@ postman-api-testing/
 3. Duplicate the environment template and fill in `key` and `token` (`base_url` is already `https://api.trello.com`). Keep them as **secret** variables.
 4. Select that environment, open the collection and use **Run collection**, running every request in order. Order matters: later requests use IDs saved by earlier ones.
 
-### Run from the command line with Newman
-
-```bash
-npm install -g newman
-
-newman run collection/Trello_API_Tests.postman_collection.json \
-  -e environment/Trello_API.postman_environment.template.json \
-  --env-var "key=$TRELLO_KEY" \
-  --env-var "token=$TRELLO_TOKEN"
-```
-
 ## Security notes
 
-- Trello authorizes these calls through `key` and `token` **query parameters**, so they show up in the Postman Console and in Newman's output. Never publish logs or screenshots that include them, and revoke the token in Trello if it leaks.
+- Trello authorizes these calls through `key` and `token` **query parameters**, so they show up in the Postman Console output. Never publish logs or screenshots that include them, and revoke the token in Trello if it leaks.
 - Real environment files are git-ignored; only the placeholder template is committed.
 
-## Limitations and next steps
+## Limitations
 
 - Requests depend on each other's saved IDs, so a failure early in a scenario cascades. If a run is stopped halfway, delete the leftover `myboard…` / `QA_Automation_Board` boards by hand.
-- Five requests have no assertions yet (Get All Boards, Get lists on Board, Create a Label on Board, Get Board Labels, Add Checklist Item), and two of them only save IDs for later requests.
+- Five requests have no assertions (Get All Boards, Get lists on Board, Create a Label on Board, Get Board Labels, Add Checklist Item), and two of them only save IDs for later requests.
 - The three "Create" requests check the response body but not the status code.
 - No JSON-schema validation and few invalid-input cases (malformed IDs, empty names, expired token).
-- Planned: run the collection with Newman in GitHub Actions, with the key and token stored as repository secrets.
 
 ## Author
 
